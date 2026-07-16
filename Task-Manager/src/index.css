@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  .dark {
+    color-scheme: dark;
+  }
+
+  html, body, #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-paper text-ledger-text dark:bg-ink dark:text-ledger-textDark font-sans antialiased;
+    transition: background-color 0.35s ease, color 0.35s ease;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+
+  ::selection {
+    background: #1E7F72;
+    color: #F7F5F0;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #1E7F72 transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: rgba(30, 127, 114, 0.4);
+    border-radius: 999px;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  :focus-visible {
+    outline: 2px solid #1E7F72;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-white/70 dark:bg-ink-soft/60 backdrop-blur-xl border border-white/40 dark:border-white/10;
+  }
+
+  .input-field {
+    @apply w-full rounded-xl border border-black/10 dark:border-white/10 bg-white/80 dark:bg-ink-soft/80
+      px-4 py-2.5 text-sm text-ledger-text dark:text-ledger-textDark placeholder:text-ledger-mutedLight
+      dark:placeholder:text-ledger-mutedDark outline-none transition
+      focus:border-accent focus:ring-2 focus:ring-accent/20;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-4 py-2.5 text-sm font-semibold
+      text-white shadow-card transition hover:bg-accent-dark active:scale-[0.98] disabled:opacity-60
+      disabled:pointer-events-none;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-black/10 dark:border-white/10
+      bg-transparent px-4 py-2.5 text-sm font-semibold text-ledger-text dark:text-ledger-textDark transition
+      hover:bg-black/[0.03] dark:hover:bg-white/5 active:scale-[0.98];
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-mono font-medium tracking-wide;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
